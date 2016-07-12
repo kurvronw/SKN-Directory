@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/lib.css" />
+    <!-- Jquery Mobile -->
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>    
+    <!-- End Jquery Mobile -->
+    <script type="text/javascript" src="js/general.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+            document.addEventListener("deviceready",onDeviceReady, false);
+        }
+        function onDeviceReady()
+        {
+            document.getElementById('btnSave').addEventListener('click', saveContact, true);
+        }
+
+        function saveContact()
+        {
+
+            var fullName = document.getElementById('contactPerson').value;
+            var number = document.getElementById('telephone').value;
+
+            var theContact = navigator.contacts.create({"displayName" : fullName});
+                var phoneNumbers = [];
+                    phoneNumbers[0] = new ContactField('work', '212-555-1234', false);
+                    
+                    theContact.phoneNumbers = phoneNumbers;
+
+                    theContact.save();
+        }
+    </script>
+
+    <title>News Details</title>
+</head>
+
+<body>
+
+    <div data-role="page" id="detailspage">
+        <div data-role="panel" id="myPanel" data-swipe-close="true" data-display="overlay" data-position="right"  data-position-fixed="true">
+          <div class="LogoPanel oc-img-container"><img src="img/Events$Coat_of_Arms.png" width="auto" height="auto"></div>
+            <ul data-role="listview" class="PanelItems">
+                
+            </ul>
+           
+        </div>
+
+        <div data-role="header">
+            <a href="#HomePage" data-transition="flip" style="padding:0px!important;" class=""><IMG SRC="img/SKNIS.png" width="37"></a>
+            <h1 class="AppHeader" style="text-shadow: none;font-size: larger;font-weight: bold; color: white;font-family: sans-serif;">SKNIS</h1>
+            <a href="#myPanel" class="ui-btn ui-corner-all mymenubtn ui-icon-bars ui-shadow ui-btn-icon-left"></a>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <a class="ui-btn ui-btn-b" data-rel="back">Go Back</a>
+            
+            <h2 class="entity" style=" PADDING: 0px 8px 0px 8px;text-shadow: none;"></h2>
+            <div style="padding:10px; text-shadow: none; ">
+                
+                <h4><span class="contactPerson"></span></h4>
+                <h4><span class="contactPersonPosition"></span></h4>
+                <h4><span class="telephone"></span></h4>
+                <!--<h4><span class="telephoneExtention"></span></h4>-->
+                <h4><span class="primaryEmail"></span></h4>
+                <h4><span class="fax"></span></h4>
+                <h4><span class="physicalAddress1"></span></h4>
+                <h4><span class="physicalAddress2"></span></h4>
+                <h4><span class="physicalAddressCity"></span></h4>
+                <h4><span class="physicalAddressCountry"></span></h4>
+                <h4><span class="youtube"></span></h4>
+                <h4><span class="facebook"></span></h4>
+                <h4><span class="twitter"></span></h4>
+                <form>
+                    <input type="hidden" id="contactPerson" value=""> 
+                    <input type="hidden" id="telephone" value="">
+                    
+                    <input type="button" value="Add to Phone Contacts" id="btnSave">
+                </form>
+            </div>
+
+        </div>
+
+        <div data-role="footer" class="MyFooter">
+            <h1></h1>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
