@@ -39,7 +39,15 @@
                 theContact.note = note;
 
                     theContact.save(createSuccess, createError);
-                    alert('You Added this contact');
+                   
+        }
+        function createSuccess() {
+            alert("Contact has been successfully added");
+            
+        }
+         
+        function createError() {
+            alert("Oops Something went wrong! Please try again later.");
         }
     </script>
 
