@@ -735,7 +735,7 @@ $(document).on("pageshow","#Departments",function(){
 		                Descr = data.departments[amount].summary;
 		                
 		            
-		            $('.DepartmentListing').append('<li><a href="groupevents.html?Title='+title+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">'+title+'</a></li>');
+		            $('.DepartmentListing').append('<li><a href="details.html?Title='+title+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">'+title+'</a></li>');
 
 		            var amount = amount + 1;
 		        };

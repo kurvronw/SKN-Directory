@@ -20,36 +20,34 @@
     <!-- End Jquery Mobile -->
     <script type="text/javascript" src="js/general.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript">
-        window.onload=function(){
-            document.addEventListener("deviceready",onDeviceReady, false);
-        }
-        function onDeviceReady()
-        {
-            document.getElementById('btnSave').addEventListener('click', saveContact, true);
-        }
+<script type="text/javascript">
+$("#createNewContact").click(function(){
+ var name=$("#fullname").val();
+ var mobile1=$("#mobile1").val();
+ var mobile2=$("#mobile2").val();
+ var email=$("#email").val();
 
-        function saveContact()
-        {
-
-            var fullName = document.getElementById('contactPerson').value;
-            var note = document.getElementById('note').value;
-
-            var theContact = navigator.contacts.create({"displayName" : fullName});
-                theContact.note = note;
-
-                    theContact.save(createSuccess, createError);
-                   
-        }
-        function createSuccess() {
-            alert("Contact has been successfully added");
-            
-        }
-         
-        function createError() {
-            alert("Oops Something went wrong! Please try again later.");
-        }
-    </script>
+ var myNewContact = navigator.contacts.create(
+ {
+ "displayName":name,
+ "name":{
+ "givenName": name,
+ "formatted":name,
+ },
+ "nickname":name,
+ "phoneNumbers":[
+ {"type":"mobile","value":mobile1,"id":0,"pref":false},
+ {"type":"other","value":mobile2,"id":1,"pref":false}
+ ],
+ "emails":[
+ {"type":"home","value":email,"id":0,"pref":false}
+ ]
+ }
+ );
+ myNewContact.save();
+ alert("The contact, " + myNewContact.name.givenName + ", has been created");
+ });
+</script>
 
     <title>News Details</title>
 </head>
@@ -91,15 +89,24 @@
                 <h4><span class="youtube"></span></h4>
                 <h4><span class="facebook"></span></h4>
                 <h4><span class="twitter"></span></h4>
-                -->
-                <form>
+                               <form>
                     <input type="text" id="contactPerson" value=""> 
                     <input type="text" id="note" value="">
                     
                     <input type="button" value="Add to Phone Contacts" id="btnSave">
                 </form>
+ -->              
+                    <div>
+                    <input type="text" placeholder="fullname" id="fullname"/><br/>
+                    <input type="text" placeholder="mobile number 1" id="mobile1" /><br/>
+                    <input type="text" placeholder="mobile number 2" id="mobile2"/><br/>
+                    <input type="text" placeholder="Email" id="email"/><br/>
+                    <button id="createNewContact">Create New Contact from form</button>
+                    </div>
+                   
 
-                <a href="thepage.html">go to the page</a>
+
+              
             </div>
 
         </div>
