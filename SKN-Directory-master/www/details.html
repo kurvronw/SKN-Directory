@@ -20,28 +20,6 @@
     <!-- End Jquery Mobile -->
     <script type="text/javascript" src="js/general.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript">
-        window.onload=function(){
-            document.addEventListener("deviceready",onDeviceReady, false);
-        }
-        function onDeviceReady()
-        {
-            document.getElementById('btnSave').addEventListener('click', saveContact, true);
-        }
-
-        function saveContact()
-        {
-
-            var fullName = document.getElementById('contactPerson1').value;
-            var note1 = document.getElementById('note1').value;
-
-            var theContact = navigator.contacts.create({"displayName" : fullName});
-                theContact.note1 = note1;
-
-                    theContact.save();
-                    alert('You Added this contact');
-        }
-    </script>
 
     <title>News Details</title>
 </head>
@@ -83,20 +61,9 @@
                 <h4><span class="youtube"></span></h4>
                 <h4><span class="facebook"></span></h4>
                 <h4><span class="twitter"></span></h4>-->
-                <form>
-                    <input type="text" id="contactPerson1" value=""> 
-                    <input type="text" id="note1" value="">
-                    
-                    <input type="button" value="Add to Phone Contacts" id="btnSave">
-                </form>
- 
-                <!--    <div>
-                    <input type="text" placeholder="fullname" id="fullname"/><br/>
-                    <input type="text" placeholder="mobile number 1" id="mobile1" /><br/>
-                    <input type="text" placeholder="mobile number 2" id="mobile2"/><br/>
-                    <input type="text" placeholder="Email" id="email"/><br/>
-                    <button id="createNewContact">Create New Contact from form</button>
-                    </div>-->              
+                 
+
+                             
                    
 
 
