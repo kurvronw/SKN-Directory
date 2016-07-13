@@ -20,10 +20,14 @@
     <!-- End Jquery Mobile -->
     <script type="text/javascript" src="js/general.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript">
-        window.onload=function(){
+
+    <script >
+
+        window.onload=function()
+        {
             document.addEventListener("deviceready",onDeviceReady, false);
         }
+
         function onDeviceReady()
         {
             document.getElementById('btnSave').addEventListener('click', saveContact, true);
@@ -32,15 +36,9 @@
         function saveContact()
         {
 
-            var fullName = document.getElementById('contactPerson').value;
-            var number = document.getElementById('telephone').value;
-
-            var theContact = navigator.contacts.create({"displayName" : fullName});
-                var phoneNumbers = [];
-                    phoneNumbers[0] = new ContactField('work', '212-555-1234', false);
-                    
-                    theContact.phoneNumbers = phoneNumbers;
-
+            var contactPerson = document.getElementById('contactPerson').value;
+            
+            var theContact = navigator.contacts.create({"displayName" : contactPerson});
                     theContact.save();
                     alert('You Added this contact');
         }

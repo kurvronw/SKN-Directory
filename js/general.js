@@ -133,7 +133,7 @@ $(document).on("pageshow","#detailspage",function(){
 			//// For the form to add contacts to the phone
 			$('#telephone').attr('value' , telephone);
 			$('#contactPerson').attr('value' , contactPerson);
-			$('#primaryEmail').attr('value' , primaryEmail);
+			//$('#primaryEmail').attr('value' , primaryEmail);
 			
 			
 			//$('.newsImages').attr('src', NewsImg);
