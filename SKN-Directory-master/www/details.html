@@ -38,7 +38,7 @@
             var theContact = navigator.contacts.create({"displayName" : fullName});
                 theContact.note = note;
 
-                    theContact.save();
+                    theContact.save(createSuccess, createError);
                     alert('You Added this contact');
         }
     </script>
