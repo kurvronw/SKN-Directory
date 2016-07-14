@@ -49,10 +49,10 @@ $(document).on("pageshow",function(){
 		var MenuItems = null;
 
 		
-		MenuItems ='<li><a href="allnews.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">All News</a></li>';
+		//MenuItems ='<li><a href="allnews.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">All News</a></li>';
 		//MenuItems = MenuItems + '<li><a href="notices.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Notices</a></li>';
 		//MenuItems = MenuItems + '<li><a href="cabinetbriefings.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Post Cabinet Briefing</a></li>';
-		MenuItems = MenuItems + '<li><a href="ministries.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Ministries</a></li>';
+		MenuItems = '<li><a href="ministries.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Ministries</a></li>';
 		MenuItems = MenuItems + '<li><a href="departments.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Departments</a></li>';
 		
 		
