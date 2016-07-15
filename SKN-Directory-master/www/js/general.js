@@ -194,9 +194,9 @@ $(document).on("pageshow","#detailspage",function(){
 				physicalAddressCity = data.govDirectoryObjects[i].physicalAddressCity,
 				physicalAddressCountry = data.govDirectoryObjects[i].physicalAddressCountry;
 				
-				$('.contactinfoz').append('<li style="list-style: none;"><h3>'+ entity +'</h3><h4>'+ contactPerson +'</h4><h3>'+ contactPersonPosition +'</h3><h3><a href="tel:'+ telephone +'">'+ telephone +'</a></h3><h3>'+ primaryEmail +'</h3><h3>'+ fax +'</h3><h3>'+ physicalAddress1 +'</h3><h3>'+ physicalAddress2 +'</h3><h3>'+ youtube +'</h3><h3>'+ facebook +'</h3><h3>'+ twitter +'</h3><h3>'+ physicalAddressCity +'</h3><h3>'+ physicalAddressCountry +'</h3><h3>'+ entity +'</h3></li>');
+				$('.contactinfoz').append('<li style="list-style: none;"><h2>'+ contactPerson +'</h2><h3>'+ contactPersonPosition +'</h3><h3><a href="tel:'+ telephone +'">'+ telephone +'</a></h3><h3>'+ primaryEmail +'</h3><h3>'+ fax +'</h3><h3>'+ physicalAddress1 +'</h3><h3>'+ physicalAddress2 +'</h3><h3>'+ youtube +'</h3><h3>'+ facebook +'</h3><h3>'+ twitter +'</h3><h3>'+ physicalAddressCity +'</h3><h3>'+ physicalAddressCountry +'</h3><h3 style="border: 1px solid black;"></h3></li>');
 				
-			//$('.entity').append(entity);
+			
 			//$('.contactPerson').append(contactPerson);			
 			//$('.contactPersonPosition').append(contactPersonPosition);
 			//$('.telephone').append(telephone +'-'+ 'Ext'+ '-'+telephoneExtention);			
@@ -223,7 +223,7 @@ $(document).on("pageshow","#detailspage",function(){
 			//////////////////////////////////////////////////////////////////
 
 		};
-
+		$('.entity').append(data.govDirectoryObjects[0].entity);
 		$('#overlay').remove();
 	});
 
@@ -715,10 +715,8 @@ $(document).on("pageshow","#HomePage",function(){
 	        }*/
 	        var finishid = totalrec - 1;
 	        for (var i = 0; i < totalrec; i++) {
-	            var entity = data.govDirectoryObjects[i].entity;
-	                
-	            
-
+	           var entity = data.govDirectoryObjects[i].entity;
+	                           
 	                	                
 	            // if(i <= 4){
 	            // 	$('.featlist').append('<li class="featlistitems"><a id="'+i+'" href="details.html?Title='+ title +'" data-transition="slide"><img src="'+imgthumb+'" width="100" height="100"><h3 style="margin-top:5px;">'+title+'</h3><p>'+ DateDisplay +'</p</a></li>');
