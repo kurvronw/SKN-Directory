@@ -73,7 +73,7 @@ $(document).on("pageshow",function(){
 	}
 
 
-	$( "#"+ActivePageN+" .MyFooter h1" ).html("Copyright 2016 &copy;");
+	$( "#"+ActivePageN+" .MyFooter h1" ).html("Copyright gov.kn 2016 &copy;");
 
 });
 

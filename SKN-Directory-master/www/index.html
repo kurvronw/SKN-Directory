@@ -49,7 +49,7 @@
 
 <body>
 
-    <div data-role="page" id="HomePage">
+    <div data-role="page" id="HomePage" style="position: relative;">
      <!--===================-->
     <!--  side menu panel  --> 
     <!--===================-->
@@ -101,13 +101,17 @@
         <!--===================-->
         <div data-role="main" class="ui-content homemain">
             <div class="ui-field-contain">
-                <form method="get" action="searchevents.html">
+               <!--  <form method="get" action="searchevents.html">
                     <div class="HomeSearchInput" style="MARGIN-BOTTOM: 0PX;">
                         <input type="text" name="Title" id="Title" placeholder="Search directory..">
                     </div>
                     <div class="HomeSearchSubmit" style="display:none;">
                         <input type="submit"  value="" data-icon="search" data-iconpos="left" data-inline="true">
                     </div>
+                </form>-->
+
+                 <form class="ui-filterable">
+                    <input id="myFilter" data-type="search" placeholder="Search directory..">
                 </form>
             </div>
         </div>
@@ -118,7 +122,7 @@
         <!--===================-->
         <!--    Latest News    --> 
         <!--===================-->
-        <div class="Listing">
+        <div class="Listing" style="margin-bottom: 43px;">
             <div data-role="main" class="ui-content">
                 <ol data-role="listview" class="listitems" data-inset="true" style="margin: 0px;">
                     <!-- Names goes here..-->
@@ -134,7 +138,7 @@
         <!--===================-->
         <!--    footer area    --> 
         <!--===================-->
-        <div data-role="footer" class="MyFooter">
+        <div data-role="footer" class="MyFooter"  style="position: fixed;width: 100%; bottom: 0px;">
                 <h1></h1>
         </div>
     </div>
