@@ -194,7 +194,7 @@ $(document).on("pageshow","#detailspage",function(){
 				physicalAddressCity = data.govDirectoryObjects[i].physicalAddressCity,
 				physicalAddressCountry = data.govDirectoryObjects[i].physicalAddressCountry;
 				
-				$('.contactinfoz').append('<li style="list-style: none;"><h2>'+ contactPerson +'</h2><h3>'+ contactPersonPosition +'</h3><h3><a href="tel:'+ telephone +'">'+ telephone +'</a></h3><h3>'+ primaryEmail +'</h3><h3>'+ fax +'</h3><h3>'+ physicalAddress1 +'</h3><h3>'+ physicalAddress2 +'</h3><h3>'+ youtube +'</h3><h3>'+ facebook +'</h3><h3>'+ twitter +'</h3><h3>'+ physicalAddressCity +'</h3><h3>'+ physicalAddressCountry +'</h3><h3 style="border: 1px solid black;"></h3></li>');
+				$('.contactinfoz').append('<li style="list-style: none;"><h2>'+ contactPerson +'</h2><h3>'+ contactPersonPosition +'</h3><h3><a href="tel:'+ telephone +'">'+ telephone +'</a></h3><h3><a href="mailto:'+ primaryEmail +'">'+ primaryEmail +'</a></h3><h3>'+ fax +'</h3><h3>'+ physicalAddress1 +'</h3><h3>'+ physicalAddress2 +'</h3><h3>'+ youtube +'</h3><h3>'+ facebook +'</h3><h3>'+ twitter +'</h3><h3>'+ physicalAddressCity +'</h3><h3>'+ physicalAddressCountry +'</h3><h3 style="border: 1px solid black;"></h3></li>');
 				
 			
 			//$('.contactPerson').append(contactPerson);			
