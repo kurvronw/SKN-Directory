@@ -91,7 +91,7 @@ $(document).on("pageshow","#detailspage",function(){
 
 	//alert('3');
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
+		url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
 		data: {entity : NewsTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -107,77 +107,7 @@ $(document).on("pageshow","#detailspage",function(){
 		var totalrec = data.govDirectoryObjects.length ;
 
 		for (var i = 0; i < totalrec; i++) {
-		if (data.govDirectoryObjects[i].contactPerson === undefined || data.govDirectoryObjects[i].contactPerson === null) {
-	            	var contactPerson = data.govDirectoryObjects.entity,
-	            	contactPerson = contactPerson;
-	            }
-	            else{
-	            	var contactPerson = data.govDirectoryObjects[i].contactPerson;
-		            	
-	            
-	            }
-
-        if (data.govDirectoryObjects[i].telephone === undefined || data.govDirectoryObjects[i].telephone === null) {
-		        	var telephonezz = "869-465-2521",
-		        	telephonezz = telephonezz;
-		        }
-		        else{
-		        	var telephonezz = data.govDirectoryObjects[i].telephone;
-		            	
-		        
-		        }
-
-
-
-		  $('#btnSave').bind( 'click', function(event, ui) {
-                                function onSuccess(contact) {
-                                    alert("Save Success");
-                                };
- 
-                                function onError(contactError) {
-                                    alert("Error = " + contactError.code);
-                                };
- 
-                                // create a new contact object
-                                var contact = navigator.contacts.create();
-                                contact.displayName = contactPerson;
-                                contact.nickname = "";            // specify both to support all devices
- 
-                                // populate some fields
-                                var name = new ContactName();
-                                name.givenName = contactPerson;
-                                name.familyName = "";
-                                contact.name = name;
-
- 								// populate phone number feilds
- 								var phoneNumbers = [];
-								    phoneNumbers[0] = new ContactField('work', telephonezz, false);
-								    phoneNumbers[1] = new ContactField('mobile', telephonezz, true); // preferred number
-								    phoneNumbers[2] = new ContactField('home', telephonezz, false);
-								    contact.phoneNumbers = phoneNumbers;
-
-                                // save to device
-                                contact.save(onSuccess,onError);
-                });	  
-
-								
-						            $('#btnCall').bind( 'click', function(event, ui) {
-						                        
-						                    window.plugins.CallNumber.CallNumber(onSuccess, onError, "8696649415", bypassAppChooser);
-						                    
-						                    function onSuccess(result){
-											  alert("Success:"+result);
-											}
-
-											function onError(result) {
-											 alert("Error:"+result);
-											}
-						                                    
-						            });   
-
-		};	
 		
-		for (var i = 0; i < totalrec; i++) {
 			var entity = data.govDirectoryObjects[i].entity,
 
 				contactPerson = data.govDirectoryObjects[i].contactPerson,
@@ -194,8 +124,131 @@ $(document).on("pageshow","#detailspage",function(){
 				physicalAddressCity = data.govDirectoryObjects[i].physicalAddressCity,
 				physicalAddressCountry = data.govDirectoryObjects[i].physicalAddressCountry;
 				
-				$('.contactinfoz').append('<li style="list-style: none;"><h2>'+ contactPerson +'</h2><h3>'+ contactPersonPosition +'</h3><h3><a href="tel:'+ telephone +'">'+ telephone +'</a></h3><h3><a href="mailto:'+ primaryEmail +'">'+ primaryEmail +'</a></h3><h3>'+ fax +'</h3><h3>'+ physicalAddress1 +'</h3><h3>'+ physicalAddress2 +'</h3><h3>'+ youtube +'</h3><h3>'+ facebook +'</h3><h3>'+ twitter +'</h3><h3>'+ physicalAddressCity +'</h3><h3>'+ physicalAddressCountry +'</h3><h3 style="border: 1px solid black;"></h3></li>');
+				$('.contactinfoz').append('<li style="list-style: none;"><h2>'+ contactPerson +'</h2><h3>'+ contactPersonPosition +'</h3><h3><a href="tel:'+ telephone +'">'+ telephone +'</a></h3><h3><a href="mailto:'+ primaryEmail +'">'+ primaryEmail +'</a></h3><h3>'+ fax +'</h3><h3>'+ physicalAddress1 +'</h3><h3>'+ physicalAddress2 +'</h3><h3>'+ youtube +'</h3><h3>'+ facebook +'</h3><h3>'+ twitter +'</h3><h3>'+ physicalAddressCity +'</h3><h3>'+ physicalAddressCountry +'</h3> <input type="button" value="Add to Phone Contacts" id="btnSave'+i+'"><h3 style="border: 1px solid black;"></h3></li>');
 				
+					  $('#btnSave0').bind( 'click', function(event, ui) {
+                                function onSuccess(contact) {
+                                    alert(data.govDirectoryObjects[0].contactPerson+' Has been saved to contacts');
+                                };
+ 
+                                function onError(contactError) {
+                                    alert("Error = " + contactError.code);
+                                };
+ 
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[0].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[0].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[0].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[0].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[0].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+                });	  
+
+ 				$('#btnSave1').bind( 'click', function(event, ui) {
+                                function onSuccess(contact) {
+                                    alert(data.govDirectoryObjects[1].contactPerson+' Has been saved to contacts');
+                                };
+ 
+                                function onError(contactError) {
+                                    alert("Error = " + contactError.code);
+                                };
+ 
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[1].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[1].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[1].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[1].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[1].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+                });	  
+
+				$('#btnSave2').bind( 'click', function(event, ui) {
+                                function onSuccess(contact) {
+                                    alert(data.govDirectoryObjects[2].contactPerson+' Has been saved to contacts');
+                                };
+ 
+                                function onError(contactError) {
+                                    alert("Error = " + contactError.code);
+                                };
+ 
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[2].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[2].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[2].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[2].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[2].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+                });	
+
+				$('#btnSave3').bind( 'click', function(event, ui) {
+                                function onSuccess(contact) {
+                                    alert(data.govDirectoryObjects[3].contactPerson+' Has been saved to contacts');
+                                };
+ 
+                                function onError(contactError) {
+                                    alert("Error = " + contactError.code);
+                                };
+ 
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[3].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[3].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[3].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[3].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[3].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+                });	
 			
 			//$('.contactPerson').append(contactPerson);			
 			//$('.contactPersonPosition').append(contactPersonPosition);
@@ -255,7 +308,7 @@ $(document).on("pageshow","#notice_detailspage",function(){
 
 	//alert('3');
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getsknisnotices/?contenttype=json",
+		url: "https://www.gov.kn/rest/wsc_getsknisnotices/?contenttype=json",
 		data: {q : NewsTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -334,7 +387,7 @@ $(document).on("pageshow","#cabinet_detailspage",function(){
 
 	//alert('3');
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getskniscabinet/?contenttype=json",
+		url: "https://www.gov.kn/rest/wsc_getskniscabinet/?contenttype=json",
 		data: {q : NewsTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -418,7 +471,7 @@ $(document).on("pageshow","#featured_detailspage",function(){
 
 	//alert('3');
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getsknisnewsfeatured/?contenttype=json",
+		url: "https://www.gov.kn/rest/wsc_getsknisnewsfeatured/?contenttype=json",
 		data: {q : NewsTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -498,7 +551,7 @@ $(document).on("pageshow","#notices_page",function(){
 	//alert('3');
 
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getsknisnotices/?contenttype=json",
+		url: "https://www.gov.kn/rest/wsc_getsknisnotices/?contenttype=json",
 		//data: {q : EventTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -552,7 +605,7 @@ $(document).on("pageshow","#cabinetbrief",function(){
 	//alert('3');
 
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getskniscabinet/?contenttype=json",
+		url: "https://www.gov.kn/rest/wsc_getskniscabinet/?contenttype=json",
 		//data: {q : EventTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -615,7 +668,7 @@ $(document).on("pageshow","#AllEvents",function(){
 		EventTitle = decodeURI(EventTitle);
 
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
+		url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
 		//data: {q : EventTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -693,10 +746,10 @@ $(document).on("pageshow","#HomePage",function(){
 		//$('.listitems').empty();
 
 		$.ajax({
-	        url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getevents/?contenttype=json
+	        url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
+	        	  //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
 
-	        //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getevents/?contenttype=json
+	        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
 	        //data: {q : 'Van Gogh'},
 	        xhrFields: {
 	            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -736,8 +789,8 @@ $(document).on("pageshow","#Categories",function(){
 	//$('.listitems').empty();
 
 	$.ajax({
-        url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_geteventcategories/?contenttype=json",
-        //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getevents/?contenttype=json
+        url: "https://www.gov.kn/rest/wsc_geteventcategories/?contenttype=json",
+        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
         //data: {q : 'Van Gogh'},
         xhrFields: {
             // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -775,8 +828,8 @@ $(document).on("pageshow","#Departments",function(){
 	//$('.listitems').empty();
 
 	$.ajax({
-        url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getdepartments/?contenttype=json",
-        //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getevents/?contenttype=json
+        url: "https://www.gov.kn/rest/wsc_getdepartments/?contenttype=json",
+        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
         //data: {q : 'Van Gogh'},
         xhrFields: {
             // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -846,8 +899,8 @@ $(document).on("pageshow","#Ministries",function(){
 	//$('.listitems').empty();
 
 	$.ajax({
-        url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getministries/?contenttype=json",
-        //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getevents/?contenttype=json
+        url: "https://www.gov.kn/rest/wsc_getministries/?contenttype=json",
+        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
         //data: {q : 'Van Gogh'},
         xhrFields: {
             // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -928,17 +981,17 @@ $(document).on("pageshow","#GroupEvents",function(){
 		var SearchParam = getQueryVariable('Min'),
 			SearchParamz = decodeURI(SearchParam),
 
-			ServiceUrl = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getdirectoryforministry/?contenttype=json&entity='+SearchParam+'';
+			ServiceUrl = 'https://www.gov.kn/rest/wsc_getdirectoryforministry/?contenttype=json&entity='+SearchParam+'';
 	}
 	else if(CatType == 'Departments'){
 		var SearchParam = getQueryVariable('Dep'),
 			SearchParamz = decodeURI(SearchParam),
-			ServiceUrl = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getdirectoryfordepartment/?contenttype=json&entity='+SearchParam+'';
+			ServiceUrl = 'https://www.gov.kn/rest/wsc_getdirectoryfordepartment/?contenttype=json&entity='+SearchParam+'';
 	}
 	else if(CatType == 'Categories'){
 		var SearchParam = getQueryVariable('Cats'),
 			SearchParamz = decodeURI(SearchParam),
-			ServiceUrl = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_geteventsforcategory/?contenttype=json&category='+SearchParam+'';
+			ServiceUrl = 'https://www.gov.kn/rest/wsc_geteventsforcategory/?contenttype=json&category='+SearchParam+'';
 	}
 
 	//alert('3');
@@ -991,7 +1044,7 @@ $(document).on("pageshow","#SearchEvents",function(){
 
 	var NewsTitle = getQueryVariable('Title');
 		NewsTitle = decodeURI(NewsTitle);
-		ServiceUrl = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json';
+		ServiceUrl = 'https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json';
 	
 
 	//alert('3');
