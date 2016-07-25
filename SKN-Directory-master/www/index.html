@@ -23,13 +23,8 @@
     <script type="text/javascript" src="js/general.js"></script>
     <!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.als-1.7.min.js"></script> -->
-    <!-- Calendar -->
-    <link rel='stylesheet' href='js/fullcalendar.css' />
-    <link rel='stylesheet' href='js/fullcalendar.print.css' media='print' />
-    <script src='js/lib/moment.min.js'></script>
-    <!-- <script src='js/lib/jquery.min.js'></script> -->
-    <script src='js/fullcalendar.min.js'></script>
-    <!-- End Calendar -->
+   
+     <script src='js/lib/moment.min.js'></script>
     <title>SKN Directory</title>
     <script type="text/javascript">
     
@@ -109,10 +104,15 @@
                         <input type="submit"  value="" data-icon="search" data-iconpos="left" data-inline="true">
                     </div>
                 </form>-->
+                <ol id="autocompleteall" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search Directory..." data-filter-theme="a">
 
-                 <form class="ui-filterable">
+                </ol>
+                <ol id="autocompleteall2" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search CONTACT PERSO..." data-filter-theme="a">
+
+                </ol>
+                 <!--<form class="ui-filterable">
                     <input id="myFilter" data-type="search" placeholder="Search directory..">
-                </form>
+                </form>-->
             </div>
         </div>
         <!--===================-->
@@ -124,10 +124,11 @@
         <!--===================-->
         <div class="Listing" style="margin-bottom: 43px;">
             <div data-role="main" class="ui-content">
-                
-                <ol data-role="listview" class="listitems" data-inset="true" data-filter="true" data-input="#myFilter" style="margin: 0px;">
+                <ol data-role="listview" class="listitems" data-inset="true" style="margin: 0px;">
                     <!-- Names goes here..-->
                 </ol>
+
+               
             </div>
         </div>
         <!--===================-->
@@ -148,10 +149,10 @@
         <!--===================-->
 
     <script type="text/javascript" src="cordova.js"></script>
-    <!-- <script type="text/javascript" src="js/index.js"></script>-->
+    <!-- <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
-    </script>
+    </script>-->
 </body>
 
 </html>

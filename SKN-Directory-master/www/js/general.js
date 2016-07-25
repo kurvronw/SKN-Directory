@@ -54,10 +54,10 @@ $(document).on("pageshow",function(){
 		var MenuItems = null;
 
 		
-		//MenuItems ='<li><a href="allnews.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">All News</a></li>';
+		MenuItems ='<li><a href="/" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Home Page</a></li>';
 		//MenuItems = MenuItems + '<li><a href="notices.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Notices</a></li>';
 		//MenuItems = MenuItems + '<li><a href="cabinetbriefings.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Post Cabinet Briefing</a></li>';
-		MenuItems = '<li><a href="ministries.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Ministries</a></li>';
+		MenuItems = MenuItems + '<li><a href="ministries.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Ministries</a></li>';
 		MenuItems = MenuItems + '<li><a href="departments.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Departments</a></li>';
 		
 		
@@ -76,6 +76,153 @@ $(document).on("pageshow",function(){
 	$( "#"+ActivePageN+" .MyFooter h1" ).html("Copyright gov.kn 2016 &copy;");
 
 });
+//Home Page
+$(document).on("pageshow","#HomePage",function(){
+
+	if($( "#HomePage .listitems" ).has( "li" ).length == 0){
+		//alert("hi");
+		
+		$(document).ready(loading);
+		//$('.listitems').empty();
+
+		$.ajax({
+	        url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
+	        	  //https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+
+	        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
+	        //data: {q : 'Van Gogh'},
+	        xhrFields: {
+	            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+	            // This can be used to set the 'withCredentials' property.
+	            // Set the value to 'true' if you'd like to pass cookies to the server.
+	            // If this is enabled, your server must respond with the header
+	            // 'Access-Control-Allow-Credentials: true'.
+	            withCredentials: true
+	        },
+	    }).then(function(data) {
+		      
+		    
+	        var totalrec = 20; //data.newsObjects.length;
+	        /*if(totalrec > 10){
+	            var totalrec = 10;
+	        }*/
+	        var finishid = totalrec - 1;
+	        for (var i = 0; i < totalrec; i++) {
+	           var entity = data.govDirectoryObjects[i].entity;
+	                           
+	                	                
+	            // if(i <= 4){
+	            // 	$('.featlist').append('<li class="featlistitems"><a id="'+i+'" href="details.html?Title='+ title +'" data-transition="slide"><img src="'+imgthumb+'" width="100" height="100"><h3 style="margin-top:5px;">'+title+'</h3><p>'+ DateDisplay +'</p</a></li>');
+	            // };
+	            
+	            $('.listitems').append('<li><a id="'+i+'" href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ entity +'</h3></a></li>');
+	          };
+	        $('#overlay').remove();
+	    });
+	}
+});
+
+//////////////////////////////////////
+$(document).on("pageshow","#HomePage",function(){
+	//alert("pageshow event fired - detailspage is now shown");
+$( "#autocompleteall" ).on( "filterablebeforefilter", function ( e, data ) {
+        var $ol = $( this ),
+            $input = $( data.input ),
+            value = $input.val(),
+            html = "",
+            origlist = $('.listitems');
+        $ol.html( "" );
+        if ( value && value.length > 2 ) {
+            $(document).ready(loading);
+            $ol.listview( "refresh" );
+            $.ajax({
+                url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
+	        	  //https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+                dataType: "json",
+                crossDomain: true,
+                data: {
+                    entity: $input.val()
+                }
+            })
+            .then( function ( data ) {
+            	PerPage= data.govDirectoryObjects.length;
+
+                // $.each( response, function ( i, val ) {
+                //     html += "<li>" + val + "</li>";
+                // });
+                for (var i = 0; i < PerPage; i++) {
+                	//alert(PerPage);
+					var entity = data.govDirectoryObjects[i].entity,
+						contactPerson = data.govDirectoryObjects[i].contactPerson;
+					
+
+					
+			        html += '<li><a href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ entity +'</h3></a></li>';
+				};
+				origlist.hide();
+				$('#overlay').remove();
+                $ol.html( html );
+                $ol.listview( "refresh" );
+                $ol.trigger( "updatelayout");
+            });
+        }
+        else{
+        	origlist.show();
+        }
+    });
+ });
+/////////////////////////////////////
+$(document).on("pageshow","#HomePage",function(){
+	//alert("pageshow event fired - detailspage is now shown");
+$( "#autocompleteall2" ).on( "filterablebeforefilter", function ( e, data ) {
+        var $ol = $( this ),
+            $input = $( data.input ),
+            value = $input.val(),
+            html = "",
+            origlist = $('.listitems');
+        $ol.html( "" );
+        if ( value && value.length > 2 ) {
+            $(document).ready(loading);
+            $ol.listview( "refresh" );
+            $.ajax({
+                url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
+	        	  //https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+                dataType: "json",
+                crossDomain: true,
+                data: {
+                    entity: $input.val()
+                }
+            })
+            .then( function ( data ) {
+            	PerPage= data.govDirectoryObjects.length;
+
+                // $.each( response, function ( i, val ) {
+                //     html += "<li>" + val + "</li>";
+                // });
+                for (var i = 0; i < PerPage; i++) {
+                	//alert(PerPage);
+					var contactPerson = data.govDirectoryObjects[i].contactPerson;
+					var entity = data.govDirectoryObjects[i].entity;
+					
+
+					
+			        html += '<li><a href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ contactPerson +'</h3></a></li>';
+				};
+				origlist.hide();
+				$('#overlay').remove();
+                $ol.html( html );
+                $ol.listview( "refresh" );
+                $ol.trigger( "updatelayout");
+            });
+        }
+        else{
+        	origlist.show();
+        }
+    });
+ });
+
+/////////////////////////////////////
+
 
 //Details Page
 $(document).on("pageshow","#detailspage",function(){
@@ -91,7 +238,8 @@ $(document).on("pageshow","#detailspage",function(){
 
 	//alert('3');
 	$.ajax({
-		url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
+		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
+		//https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
 		data: {entity : NewsTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -249,6 +397,37 @@ $(document).on("pageshow","#detailspage",function(){
                                 // save to device
                                 contact.save(onSuccess,onError);
                 });	
+
+				$('#btnSave4').bind( 'click', function(event, ui) {
+                                function onSuccess(contact) {
+                                    alert(data.govDirectoryObjects[4].contactPerson+' Has been saved to contacts');
+                                };
+ 
+                                function onError(contactError) {
+                                    alert("Error = " + contactError.code);
+                                };
+ 
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[4].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[4].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[4].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[4].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[4].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+                });	
 			
 			//$('.contactPerson').append(contactPerson);			
 			//$('.contactPersonPosition').append(contactPersonPosition);
@@ -296,303 +475,7 @@ $(document).on("pageshow","#detailspage",function(){
 });
 
 ////////////////////////////////////////////////////////
-//Notices Details Page
-$(document).on("pageshow","#notice_detailspage",function(){
-	
-	//alert("pageshow event fired - notice_detailspage is now shown");
-	
-	$(document).ready(loading);
 
-	var NewsTitle = getQueryVariable('Title'),
-		NewsTitle = decodeURI(NewsTitle);
-
-	//alert('3');
-	$.ajax({
-		url: "https://www.gov.kn/rest/wsc_getsknisnotices/?contenttype=json",
-		data: {q : NewsTitle},
-		xhrFields: {
-		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-		// This can be used to set the 'withCredentials' property.
-		// Set the value to 'true' if you'd like to pass cookies to the server.
-		// If this is enabled, your server must respond with the header
-		// 'Access-Control-Allow-Credentials: true'.
-		withCredentials: true
-	},
-	}).then(function(data) {
-		var totalrec = 1;
-
-		var finishid = totalrec - 1;
-		
-		for (var i = 0; i < totalrec; i++) {
-			var title = data.newsObjects[i].title,
-			
-			publishDate = new Date(data.newsObjects[i].publishDate),
-			DateDisplay = publishDate.toDateString(),
-			articleBody = data.newsObjects[i].articleBody,
-			//NewsImg = data.newsObjects[i].newsImages[0].full,
-			NewsMins = data.newsObjects[i].newsMinistries.name,
-			NewsDeps = data.newsObjects[i].newsDepartments.name; 
-			
-
-			if (data.newsObjects[i].newsImages[0] === undefined || data.newsObjects[i].newsImages[0] === null) {
-	            	var noimg = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/img/NavigationLayouts$No_image_found.jpg',
-	            	NewsImg = noimg;
-	            }
-	            else{
-	            	var thebase = "data:image;base64,",
-		            	theimg = data.newsObjects[i].newsImages[0].full,
-		            	nextpart = '',
-		            	NewsImg = nextpart.concat(thebase,theimg);
-	            
-	            }
-
-			//alert(EventMins);
-			//alert(EventDeps);
-			
-			$('.noticeTitle').append(title +''+ '<h5 style="text-align: right;margin-right: 5px;">'+DateDisplay+'</h5>');
-			$('.noticeBody').append(articleBody);
-			$('.Ministries').append(NewsMins);
-			$('.Departments').append(NewsDeps);
-			$('.noticeImages').attr('src', NewsImg);
-
-		};
-
-		$('#overlay').remove();
-	});
-
-	// function AddToCal(){
-	// 	// prep some variables
-	// 	var startDate = new Date(2016,6,30,18,30,0,0,0); // beware: month 0 = january, 11 = december
-	// 	var endDate = new Date(2016,6,15,30,30,0,0,0);
-	// 	var title = "My nice event";
-	// 	var location = "Home";
-	// 	var notes = "Some notes about this event.";
-	// 	var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-	// 	var error = function(message) { alert("Error: " + message); };
-
-	// 	// create an event silently (on Android < 4 an interactive dialog is shown)
-	// 	window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
-	// }
-});
-///////////////////////////////////////////////////////
-//Cabinet Details Page
-$(document).on("pageshow","#cabinet_detailspage",function(){
-	
-	//alert("pageshow event fired - notice_detailspage is now shown");
-	
-	$(document).ready(loading);
-
-	var NewsTitle = getQueryVariable('Title'),
-		NewsTitle = decodeURI(NewsTitle);
-
-	//alert('3');
-	$.ajax({
-		url: "https://www.gov.kn/rest/wsc_getskniscabinet/?contenttype=json",
-		data: {q : NewsTitle},
-		xhrFields: {
-		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-		// This can be used to set the 'withCredentials' property.
-		// Set the value to 'true' if you'd like to pass cookies to the server.
-		// If this is enabled, your server must respond with the header
-		// 'Access-Control-Allow-Credentials: true'.
-		withCredentials: true
-	},
-	}).then(function(data) {
-		var totalrec = 1;
-
-		var finishid = totalrec - 1;
-		
-		for (var i = 0; i < totalrec; i++) {
-			var title = data.newsObjects[i].title,
-			articleBody = data.newsObjects[i].articleBody,
-			NewsMins = data.newsObjects[i].newsMinistries.name,
-			NewsDeps = data.newsObjects[i].newsDepartments.name;
-			
-			if (data.newsObjects[i].newsImages[0] === undefined || data.newsObjects[i].newsImages[0] === null) {
-	            	var noimg = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/img/NavigationLayouts$No_image_found.jpg',
-	            	NewsImg = noimg;
-	            }
-	            else{
-	            	var thebase = "data:image;base64,",
-		            	theimg = data.newsObjects[i].newsImages[0].full,
-		            	nextpart = '',
-		            	NewsImg = nextpart.concat(thebase,theimg);
-	            
-	            }
-			if (data.newsObjects[i].publishDate == null) {
-			              var datda= new Date(),
-			               DateDisplay = datda.toDateString();
-			              
-			             }
-			             else{
-			             thisdate = new Date(data.newsObjects[i].publishDate),
-			             DateDisplay= thisdate.toDateString();
-			             }
-			//alert(EventMins);
-			//alert(EventDeps);
-			
-			$('.cabinetTitle').append(title +''+ '<h5 style="text-align: right;margin-right: 5px;">'+DateDisplay+'</h5>');
-			$('.cabinetBody').append(articleBody);
-			$('.Ministries').append(NewsMins);
-			$('.Departments').append(NewsDeps);
-			$('.cabinetImages').attr('src', NewsImg);
-
-		};
-
-		$('#overlay').remove();
-	});
-
-	// function AddToCal(){
-	// 	// prep some variables
-	// 	var startDate = new Date(2016,6,30,18,30,0,0,0); // beware: month 0 = january, 11 = december
-	// 	var endDate = new Date(2016,6,15,30,30,0,0,0);
-	// 	var title = "My nice event";
-	// 	var location = "Home";
-	// 	var notes = "Some notes about this event.";
-	// 	var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-	// 	var error = function(message) { alert("Error: " + message); };
-
-	// 	// create an event silently (on Android < 4 an interactive dialog is shown)
-	// 	window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
-	// }
-});
-///////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////
-//Featured Details Page
-$(document).on("pageshow","#featured_detailspage",function(){
-	
-	//alert("pageshow event fired - notice_detailspage is now shown");
-	
-	$(document).ready(loading);
-
-	var NewsTitle = getQueryVariable('Title'),
-		NewsTitle = decodeURI(NewsTitle);
-
-	//alert('3');
-	$.ajax({
-		url: "https://www.gov.kn/rest/wsc_getsknisnewsfeatured/?contenttype=json",
-		data: {q : NewsTitle},
-		xhrFields: {
-		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-		// This can be used to set the 'withCredentials' property.
-		// Set the value to 'true' if you'd like to pass cookies to the server.
-		// If this is enabled, your server must respond with the header
-		// 'Access-Control-Allow-Credentials: true'.
-		withCredentials: true
-	},
-	}).then(function(data) {
-		var totalrec = 1;
-
-		var finishid = totalrec - 1;
-		
-		for (var i = 0; i < totalrec; i++) {
-			var title = data.newsObjects[i].title,
-			publishDate = new Date(data.newsObjects[i].publishDate),
-			publishDate = publishDate.toDateString(),
-			DateDisplay = publishDate,
-			articleBody = data.newsObjects[i].articleBody,
-			NewsMins = data.newsObjects[i].newsMinistries.name,
-			NewsDeps = data.newsObjects[i].newsDepartments.name;
-
-			
-			
-			
-			if (data.newsObjects[i].newsImages[0] === undefined || data.newsObjects[i].newsImages[0] === null) {
-	            	var noimg = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/img/NavigationLayouts$No_image_found.jpg',
-	            	NewsImg = noimg;
-	            }
-	            else{
-	            	var thebase = "data:image;base64,",
-		            	theimg = data.newsObjects[i].newsImages[0].full,
-		            	nextpart = '',
-		            	NewsImg = nextpart.concat(thebase,theimg);
-	            
-	            }
-			//alert(EventMins);
-			//alert(EventDeps);
-			
-			$('.featuredTitle').append(title +''+ '<h5 style="text-align: right;margin-right: 5px;">'+DateDisplay+'</h5>');
-			$('.featuredBody').append(articleBody);
-			$('.Ministries').append(NewsMins);
-			$('.Departments').append(NewsDeps);
-			$('.featuredImages').attr('src', NewsImg);
-
-		};
-
-		$('#overlay').remove();
-	});
-
-	// function AddToCal(){
-	// 	// prep some variables
-	// 	var startDate = new Date(2016,6,30,18,30,0,0,0); // beware: month 0 = january, 11 = december
-	// 	var endDate = new Date(2016,6,15,30,30,0,0,0);
-	// 	var title = "My nice event";
-	// 	var location = "Home";
-	// 	var notes = "Some notes about this event.";
-	// 	var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-	// 	var error = function(message) { alert("Error: " + message); };
-
-	// 	// create an event silently (on Android < 4 an interactive dialog is shown)
-	// 	window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
-	// }
-});
-///////////////////////////////////////////////////////
-
-//Notices page
-$(document).on("pageshow","#notices_page",function(){
-	
-	//alert("pageshow event fired - detailspage is now shown");
-	$(document).ready(loading);
-
-	var NewsTitle = getQueryVariable('Title'),
-		NewsTitle = decodeURI(NewsTitle);
-
-	//alert('3');
-
-	$.ajax({
-		url: "https://www.gov.kn/rest/wsc_getsknisnotices/?contenttype=json",
-		//data: {q : EventTitle},
-		xhrFields: {
-		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-		// This can be used to set the 'withCredentials' property.
-		// Set the value to 'true' if you'd like to pass cookies to the server.
-		// If this is enabled, your server must respond with the header
-		// 'Access-Control-Allow-Credentials: true'.
-		withCredentials: true
-	},
-	}).then(function(data) {
-		var totalrec = data.newsObjects.length,
-			finishid = totalrec - 1,
-			PerPage = 10,
-			Pages = totalrec / PerPage;
-
-
-		for (var i = 0; i < totalrec; i++) {
-			//alert(totalrec);
-			var title = data.newsObjects[i].title,
-			publishDate = new Date(data.newsObjects[i].publishDate),
-			publishDate = publishDate.toDateString(),
-			DateDisplay = publishDate;
-			Details = data.newsObjects[i].articleBody,
-			summary = data.newsObjects[i].summary;
-			
-			
-	       
-
-			$('.noticelistwhole').append('<li><a id="'+i+'" href="notices_details.html?Title='+ title +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ title +'</h3><p>'+ DateDisplay +'</p></a></li>');
-
-			
-		};
-
-		$('#overlay').remove();
-	});
-
-	//$(document).ready(LoadContent);
-	
-});
-
-/////////////////////////////////////////////
 //Cabinet page
 $(document).on("pageshow","#cabinetbrief",function(){
 	
@@ -736,89 +619,6 @@ $(document).on("pageshow","#AllEvents",function(){
 	
 });
 
-//Home Page
-$(document).on("pageshow","#HomePage",function(){
-
-	if($( "#HomePage .listitems" ).has( "li" ).length == 0){
-		//alert("hi");
-		
-		$(document).ready(loading);
-		//$('.listitems').empty();
-
-		$.ajax({
-	        url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
-
-	        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
-	        //data: {q : 'Van Gogh'},
-	        xhrFields: {
-	            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-	            // This can be used to set the 'withCredentials' property.
-	            // Set the value to 'true' if you'd like to pass cookies to the server.
-	            // If this is enabled, your server must respond with the header
-	            // 'Access-Control-Allow-Credentials: true'.
-	            withCredentials: true
-	        },
-	    }).then(function(data) {
-		      
-		    
-	        var totalrec = 10; //data.newsObjects.length;
-	        /*if(totalrec > 10){
-	            var totalrec = 10;
-	        }*/
-	        var finishid = totalrec - 1;
-	        for (var i = 0; i < totalrec; i++) {
-	           var entity = data.govDirectoryObjects[i].entity;
-	                           
-	                	                
-	            // if(i <= 4){
-	            // 	$('.featlist').append('<li class="featlistitems"><a id="'+i+'" href="details.html?Title='+ title +'" data-transition="slide"><img src="'+imgthumb+'" width="100" height="100"><h3 style="margin-top:5px;">'+title+'</h3><p>'+ DateDisplay +'</p</a></li>');
-	            // };
-	            
-	            $('.listitems').append('<li><a id="'+i+'" href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ entity +'</h3></a></li>');
-	          };
-	        $('#overlay').remove();
-	    });
-	}
-});
-
-//Categories Page
-$(document).on("pageshow","#Categories",function(){
-
-	$(document).ready(loading);
-	//$('.listitems').empty();
-
-	$.ajax({
-        url: "https://www.gov.kn/rest/wsc_geteventcategories/?contenttype=json",
-        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
-        //data: {q : 'Van Gogh'},
-        xhrFields: {
-            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-            // This can be used to set the 'withCredentials' property.
-            // Set the value to 'true' if you'd like to pass cookies to the server.
-            // If this is enabled, your server must respond with the header
-            // 'Access-Control-Allow-Credentials: true'.
-            withCredentials: true
-        },
-    }).then(function(data) {
-        var totalrec = data.eventCategoriesObjects.length;
-        /*if(totalrec > 10){
-            var totalrec = 10;
-        }*/
-        var finishid = totalrec - 1;
-        for (var i = 0; i < totalrec; i++) {
-            var title = data.eventCategoriesObjects[i].categoryName,
-                Descr = data.eventCategoriesObjects[i].categoryDescription;
-                
-            
-            $('.Catslistitems').append('<li><a href="groupevents.html?CatType=Categories&Cats='+title+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">'+title+'</a></li>');
-            
-            
-        };
-
-        $('#overlay').remove();
-    });
-});
 
 
 //Departments Page
@@ -1044,8 +844,8 @@ $(document).on("pageshow","#SearchEvents",function(){
 
 	var NewsTitle = getQueryVariable('Title');
 		NewsTitle = decodeURI(NewsTitle);
-		ServiceUrl = 'https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json';
-	
+		ServiceUrl = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json';
+		//https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
 
 	//alert('3');
 	$.ajax({
