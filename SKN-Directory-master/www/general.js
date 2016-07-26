@@ -54,7 +54,7 @@ $(document).on("pageshow",function(){
 		var MenuItems = null;
 
 		
-		MenuItems ='<li><a href="/" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Home Page</a></li>';
+		MenuItems ='<li><a href="#HomePage" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Home Page</a></li>';
 		//MenuItems = MenuItems + '<li><a href="notices.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Notices</a></li>';
 		//MenuItems = MenuItems + '<li><a href="cabinetbriefings.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Post Cabinet Briefing</a></li>';
 		MenuItems = MenuItems + '<li><a href="ministries.html" data-transition="flip" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Ministries</a></li>';
@@ -157,7 +157,7 @@ $( "#autocompleteall" ).on( "filterablebeforefilter", function ( e, data ) {
 					
 
 					
-			        html += '<li><a href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ entity +'</h3></a></li>';
+			        html += '<li><a href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ entity +'</h3><h3>'+ contactPerson +'</h3></a></li>';
 				};
 				origlist.hide();
 				$('#overlay').remove();
