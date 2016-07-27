@@ -1,6 +1,6 @@
-function onDeviceReady() {
+/*function onDeviceReady() {
         navigator.splashscreen.show();
-    }
+    }*/
 
 function TakePic(){
     navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
@@ -76,6 +76,20 @@ $(document).on("pageshow",function(){
 	$( "#"+ActivePageN+" .MyFooter h1" ).html("Copyright gov.kn 2016 &copy;");
 
 });
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady(){
+    document.addEventListener("backbutton", function(e){
+       if($.mobile.activePage.is('#HomePage')){
+           e.preventDefault();
+           navigator.app.exitApp();
+       }
+       else {
+           navigator.app.backHistory()
+       }
+    }, false);
+}
 //Home Page
 $(document).on("pageshow","#HomePage",function(){
 
@@ -641,7 +655,7 @@ $(document).on("pageshow","#Departments",function(){
         },
     }).then(function(data) {
         var totalrec = data.departments.length,
-        	PerPage = 20,
+        	PerPage = totalrec,
 			finishid = PerPage - 1,
 			Start = 0;
 
