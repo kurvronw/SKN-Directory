@@ -90,6 +90,8 @@ function onDeviceReady(){
        }
     }, false);
 }
+
+
 //Home Page
 $(document).on("pageshow","#HomePage",function(){
 
@@ -100,8 +102,8 @@ $(document).on("pageshow","#HomePage",function(){
 		//$('.listitems').empty();
 
 		$.ajax({
-	        url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+	        url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
+	        	  //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
 
 	        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
 	        //data: {q : 'Van Gogh'},
@@ -150,8 +152,8 @@ $( "#autocompleteall" ).on( "filterablebeforefilter", function ( e, data ) {
             $(document).ready(loading);
             $ol.listview( "refresh" );
             $.ajax({
-                url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+                url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
+	        	  //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
                 dataType: "json",
                 crossDomain: true,
                 data: {
@@ -199,8 +201,8 @@ $( "#autocompleteall2" ).on( "filterablebeforefilter", function ( e, data ) {
             $(document).ready(loading);
             $ol.listview( "refresh" );
             $.ajax({
-                url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+                url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
+	        	  //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
                 dataType: "json",
                 crossDomain: true,
                 data: {
@@ -252,8 +254,8 @@ $(document).on("pageshow","#detailspage",function(){
 
 	//alert('3');
 	$.ajax({
-		url: "https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json",
-		//https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+		url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
+		//https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
 		data: {entity : NewsTitle},
 		xhrFields: {
 		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -858,8 +860,8 @@ $(document).on("pageshow","#SearchEvents",function(){
 
 	var NewsTitle = getQueryVariable('Title');
 		NewsTitle = decodeURI(NewsTitle);
-		ServiceUrl = 'https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json';
-		//https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json
+		ServiceUrl = 'https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json';
+		//https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
 
 	//alert('3');
 	$.ajax({
