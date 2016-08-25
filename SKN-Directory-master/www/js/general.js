@@ -273,7 +273,7 @@ $(document).on("pageshow","#detailspage",function(){
 		if(totalrec = 0){
 
 			alert('no results found');
-			$('#overlay').remove();
+			
 			
 			}else{
 				for (var i = 0; i < totalrec; i++) {
@@ -477,12 +477,12 @@ $(document).on("pageshow","#detailspage",function(){
 			//////////////////////////////////////////////////////////////////
 
 		};
-
+}
 		$('.entity').append(data.govDirectoryObjects[0].entity);
 	
 		$('#overlay').remove();
 	});
-}
+
 	// function AddToCal(){
 	// 	// prep some variables
 	// 	var startDate = new Date(2016,6,30,18,30,0,0,0); // beware: month 0 = january, 11 = december
