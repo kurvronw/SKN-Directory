@@ -270,10 +270,13 @@ $(document).on("pageshow","#detailspage",function(){
 
 		var totalrec = data.govDirectoryObjects.length ;
 
-		for (var i = 0; i < totalrec; i++) {
-		if(totalrec == 0){
+		if(totalrec = 0){
+			
 			alert('no results found');
+		
+			
 			}else{
+				for (var i = 0; i < totalrec; i++) {
 
 			var entity = data.govDirectoryObjects[i].entity,
 
@@ -474,8 +477,9 @@ $(document).on("pageshow","#detailspage",function(){
 			//////////////////////////////////////////////////////////////////
 
 		};
-		}
+
 		$('.entity').append(data.govDirectoryObjects[0].entity);
+	}
 		$('#overlay').remove();
 	});
 
