@@ -269,10 +269,10 @@ $(document).on("pageshow","#detailspage",function(){
 		
 
 		var totalrec = data.govDirectoryObjects.length ;
-	alert(totalrec);
+	//alert(totalrec);
 		if(totalrec == 0){
 
-		
+		$('#overlay').remove();
 			
 			
 			}else{
