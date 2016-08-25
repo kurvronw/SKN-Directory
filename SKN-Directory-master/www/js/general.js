@@ -271,10 +271,12 @@ $(document).on("pageshow","#detailspage",function(){
 		var totalrec = data.govDirectoryObjects.length ;
 	//alert(totalrec);
 		if(totalrec == 0){
-
-		$('#overlay').remove();
+			
+			$('.contactinfoz').append('<li style="list-style: none;"><h1>NO CONTACT INFORMATION FOUND </h1></li>');
+			$('#overlay').remove();
 			
 			
+				
 			}else{
 				for (var i = 0; i < totalrec; i++) {
 
