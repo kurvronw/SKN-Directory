@@ -92,151 +92,7 @@ function onDeviceReady(){
 }
 
 
-//Home Page
-$(document).on("pageshow","#HomePage",function(){
-
-	if($( "#HomePage .listitems" ).has( "li" ).length == 0){
-		//alert("hi");
-		
-		$(document).ready(loading);
-		//$('.listitems').empty();
-
-		$.ajax({
-	        url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
-
-	        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
-	        //data: {q : 'Van Gogh'},
-	        xhrFields: {
-	            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-	            // This can be used to set the 'withCredentials' property.
-	            // Set the value to 'true' if you'd like to pass cookies to the server.
-	            // If this is enabled, your server must respond with the header
-	            // 'Access-Control-Allow-Credentials: true'.
-	            withCredentials: true
-	        },
-	    }).then(function(data) {
-		      
-		    
-	        var totalrec = 20; //data.newsObjects.length;
-	        /*if(totalrec > 10){
-	            var totalrec = 10;
-	        }*/
-	        var finishid = totalrec - 1;
-	        for (var i = 0; i < totalrec; i++) {
-	           var entity = data.govDirectoryObjects[i].entity;
-	                           
-	                	                
-	            // if(i <= 4){
-	            // 	$('.featlist').append('<li class="featlistitems"><a id="'+i+'" href="details.html?Title='+ title +'" data-transition="slide"><img src="'+imgthumb+'" width="100" height="100"><h3 style="margin-top:5px;">'+title+'</h3><p>'+ DateDisplay +'</p</a></li>');
-	            // };
-	            
-	            $('.listitems').append('<li><a id="'+i+'" href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ entity +'</h3></a></li>');
-	          };
-	        $('#overlay').remove();
-	    });
-	}
-});
-
-//////////////////////////////////////
-$(document).on("pageshow","#HomePage",function(){
-	//alert("pageshow event fired - detailspage is now shown");
-$( "#autocompleteall" ).on( "filterablebeforefilter", function ( e, data ) {
-        var $ol = $( this ),
-            $input = $( data.input ),
-            value = $input.val(),
-            html = "",
-            origlist = $('.listitems');
-        $ol.html( "" );
-        if ( value && value.length > 2 ) {
-            $(document).ready(loading);
-            $ol.listview( "refresh" );
-            $.ajax({
-                url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
-                dataType: "json",
-                crossDomain: true,
-                data: {
-                    entity: $input.val()
-                }
-            })
-            .then( function ( data ) {
-            	PerPage= data.govDirectoryObjects.length;
-
-                // $.each( response, function ( i, val ) {
-                //     html += "<li>" + val + "</li>";
-                // });
-                for (var i = 0; i < PerPage; i++) {
-                	//alert(PerPage);
-					var entity = data.govDirectoryObjects[i].entity,
-						contactPerson = data.govDirectoryObjects[i].contactPerson;
-					
-
-					
-			        html += '<li><a href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ entity +'</h3><h3>'+ contactPerson +'</h3></a></li>';
-				};
-				origlist.hide();
-				$('#overlay').remove();
-                $ol.html( html );
-                $ol.listview( "refresh" );
-                $ol.trigger( "updatelayout");
-            });
-        }
-        else{
-        	origlist.show();
-        }
-    });
- });
-/////////////////////////////////////
-$(document).on("pageshow","#HomePage",function(){
-	//alert("pageshow event fired - detailspage is now shown");
-$( "#autocompleteall2" ).on( "filterablebeforefilter", function ( e, data ) {
-        var $ol = $( this ),
-            $input = $( data.input ),
-            value = $input.val(),
-            html = "",
-            origlist = $('.listitems');
-        $ol.html( "" );
-        if ( value && value.length > 2 ) {
-            $(document).ready(loading);
-            $ol.listview( "refresh" );
-            $.ajax({
-                url: "https://www.gov.kn/rest/wsc_getgovdirectory/?contenttype=json",
-	        	  //https://stkittsnevisegovernmentplatform-test.mendixcloud.com/rest/wsc_getgovdirectory/?contenttype=json
-                dataType: "json",
-                crossDomain: true,
-                data: {
-                    entity: $input.val()
-                }
-            })
-            .then( function ( data ) {
-            	PerPage= data.govDirectoryObjects.length;
-
-                // $.each( response, function ( i, val ) {
-                //     html += "<li>" + val + "</li>";
-                // });
-                for (var i = 0; i < PerPage; i++) {
-                	//alert(PerPage);
-					var contactPerson = data.govDirectoryObjects[i].contactPerson;
-					var entity = data.govDirectoryObjects[i].entity;
-					
-
-					
-			        html += '<li><a href="details.html?Title='+ entity +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ contactPerson +'</h3></a></li>';
-				};
-				origlist.hide();
-				$('#overlay').remove();
-                $ol.html( html );
-                $ol.listview( "refresh" );
-                $ol.trigger( "updatelayout");
-            });
-        }
-        else{
-        	origlist.show();
-        }
-    });
- });
-
+//
 /////////////////////////////////////
 
 
@@ -269,14 +125,12 @@ $(document).on("pageshow","#detailspage",function(){
 		
 
 		var totalrec = data.govDirectoryObjects.length ;
-	//alert(totalrec);
-		if(totalrec == 0){
+	alert(totalrec);
+		if(totalrec = 0){
+
+		
 			
-			$('.contactinfoz').append('<li style="list-style: none;"><h1>NO CONTACT INFORMATION FOUND </h1></li>');
-			$('#overlay').remove();
 			
-			
-				
 			}else{
 				for (var i = 0; i < totalrec; i++) {
 
