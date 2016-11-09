@@ -90,6 +90,23 @@ function onDeviceReady(){
        }
     }, false);
 }
+
+
+ 
+//document.addEventListener("deviceready", onDeviceReady, false);
+//function onDeviceReady() {
+   // console.log(navigator.notification);
+	  //  function onConfirm(buttonIndex) {
+		//    alert('You selected button ' + buttonIndex);
+		//}
+
+	//	navigator.notification.confirm(
+		//    'You are the winner!', // message
+		//     onConfirm,            // callback to invoke with index of button pressed
+	//	    'Game Over',           // title
+	//	    ['Restart','Exit']     // buttonLabels
+		//);
+//}
 //Home Page
 $(document).on("pageshow","#HomePage",function(){
 
@@ -179,12 +196,14 @@ $( "#autocompleteall" ).on( "filterablebeforefilter", function ( e, data ) {
                 $ol.html( html );
                 $('.op-home-list').show;
                 $('.Listing').show;
+                $('.home_links_div').hide;
                 $ol.listview( "refresh" );
                 $ol.trigger( "updatelayout");
             });
         }
         else{
         	$('.op-home-list').hide;
+        	$('.home_links_div').show;
         	$('.Listing').hide;
         }
     });
@@ -271,7 +290,12 @@ $(document).on("pageshow","#detailspage",function(){
 		
 
 		var totalrec = data.govDirectoryObjects.length ;
+		//alert(totalrec);
+if(totalrec == 0){
+			$('.entity').append('No Contact info');
+			$('#overlay').remove();
 
+		}else{
 		for (var i = 0; i < totalrec; i++) {
 		
 			var entity = data.govDirectoryObjects[i].entity,
@@ -292,160 +316,9 @@ $(document).on("pageshow","#detailspage",function(){
 				
 				$('.contactinfoz').append('<li style="list-style: none;"><h2>'+ contactPerson +'</h2><h3>'+ contactPersonPosition +'</h3><h3><a href="tel:'+ telephone +'">'+ telephone +'</a></h3><h3><a href="mailto:'+ primaryEmail +'">'+ primaryEmail +'</a></h3><h3>'+ fax +'</h3><h3>'+ physicalAddress1 +'</h3><h3>'+ physicalAddress2 +'</h3><h3>'+ youtube +'</h3><h3>'+ facebook +'</h3><h3>'+ twitter +'</h3><h3>'+ physicalAddressCity +'</h3><h3>'+ physicalAddressCountry +'</h3> <input type="button" value="Add to Phone Contacts" id="btnSave'+i+'"><h3 style="border: 1px solid black;"></h3></li>');
 				
-					  $('#btnSave0').bind( 'click', function(event, ui) {
-                                function onSuccess(contact) {
-                                    alert(data.govDirectoryObjects[0].contactPerson+' Has been saved to contacts');
-                                };
- 
-                                function onError(contactError) {
-                                    alert("Error = " + contactError.code);
-                                };
- 
-                                // create a new contact object
-                                var contact = navigator.contacts.create();
-                                contact.displayName = data.govDirectoryObjects[0].contactPerson;
-                                contact.nickname = "";            // specify both to support all devices
- 
-                                // populate some fields
-                                var name = new ContactName();
-                                name.givenName = data.govDirectoryObjects[0].contactPerson;
-                                name.familyName = "";
-                                contact.name = name;
+					  
 
- 								// populate phone number feilds
- 								var phoneNumbers = [];
-								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[0].telephone, false);
-								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[0].telephone, true); // preferred number
-								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[0].telephone, false);
-								    contact.phoneNumbers = phoneNumbers;
-
-                                // save to device
-                                contact.save(onSuccess,onError);
-                });	  
-
- 				$('#btnSave1').bind( 'click', function(event, ui) {
-                                function onSuccess(contact) {
-                                    alert(data.govDirectoryObjects[1].contactPerson+' Has been saved to contacts');
-                                };
- 
-                                function onError(contactError) {
-                                    alert("Error = " + contactError.code);
-                                };
- 
-                                // create a new contact object
-                                var contact = navigator.contacts.create();
-                                contact.displayName = data.govDirectoryObjects[1].contactPerson;
-                                contact.nickname = "";            // specify both to support all devices
- 
-                                // populate some fields
-                                var name = new ContactName();
-                                name.givenName = data.govDirectoryObjects[1].contactPerson;
-                                name.familyName = "";
-                                contact.name = name;
-
- 								// populate phone number feilds
- 								var phoneNumbers = [];
-								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[1].telephone, false);
-								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[1].telephone, true); // preferred number
-								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[1].telephone, false);
-								    contact.phoneNumbers = phoneNumbers;
-
-                                // save to device
-                                contact.save(onSuccess,onError);
-                });	  
-
-				$('#btnSave2').bind( 'click', function(event, ui) {
-                                function onSuccess(contact) {
-                                    alert(data.govDirectoryObjects[2].contactPerson+' Has been saved to contacts');
-                                };
- 
-                                function onError(contactError) {
-                                    alert("Error = " + contactError.code);
-                                };
- 
-                                // create a new contact object
-                                var contact = navigator.contacts.create();
-                                contact.displayName = data.govDirectoryObjects[2].contactPerson;
-                                contact.nickname = "";            // specify both to support all devices
- 
-                                // populate some fields
-                                var name = new ContactName();
-                                name.givenName = data.govDirectoryObjects[2].contactPerson;
-                                name.familyName = "";
-                                contact.name = name;
-
- 								// populate phone number feilds
- 								var phoneNumbers = [];
-								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[2].telephone, false);
-								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[2].telephone, true); // preferred number
-								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[2].telephone, false);
-								    contact.phoneNumbers = phoneNumbers;
-
-                                // save to device
-                                contact.save(onSuccess,onError);
-                });	
-
-				$('#btnSave3').bind( 'click', function(event, ui) {
-                                function onSuccess(contact) {
-                                    alert(data.govDirectoryObjects[3].contactPerson+' Has been saved to contacts');
-                                };
- 
-                                function onError(contactError) {
-                                    alert("Error = " + contactError.code);
-                                };
- 
-                                // create a new contact object
-                                var contact = navigator.contacts.create();
-                                contact.displayName = data.govDirectoryObjects[3].contactPerson;
-                                contact.nickname = "";            // specify both to support all devices
- 
-                                // populate some fields
-                                var name = new ContactName();
-                                name.givenName = data.govDirectoryObjects[3].contactPerson;
-                                name.familyName = "";
-                                contact.name = name;
-
- 								// populate phone number feilds
- 								var phoneNumbers = [];
-								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[3].telephone, false);
-								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[3].telephone, true); // preferred number
-								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[3].telephone, false);
-								    contact.phoneNumbers = phoneNumbers;
-
-                                // save to device
-                                contact.save(onSuccess,onError);
-                });	
-
-				$('#btnSave4').bind( 'click', function(event, ui) {
-                                function onSuccess(contact) {
-                                    alert(data.govDirectoryObjects[4].contactPerson+' Has been saved to contacts');
-                                };
- 
-                                function onError(contactError) {
-                                    alert("Error = " + contactError.code);
-                                };
- 
-                                // create a new contact object
-                                var contact = navigator.contacts.create();
-                                contact.displayName = data.govDirectoryObjects[4].contactPerson;
-                                contact.nickname = "";            // specify both to support all devices
- 
-                                // populate some fields
-                                var name = new ContactName();
-                                name.givenName = data.govDirectoryObjects[4].contactPerson;
-                                name.familyName = "";
-                                contact.name = name;
-
- 								// populate phone number feilds
- 								var phoneNumbers = [];
-								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[4].telephone, false);
-								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[4].telephone, true); // preferred number
-								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[4].telephone, false);
-								    contact.phoneNumbers = phoneNumbers;
-
-                                // save to device
-                                contact.save(onSuccess,onError);
-                });	
+ 				
 			
 			//$('.contactPerson').append(contactPerson);			
 			//$('.contactPersonPosition').append(contactPersonPosition);
@@ -473,7 +346,259 @@ $(document).on("pageshow","#detailspage",function(){
 			//////////////////////////////////////////////////////////////////
 
 		};
+ function onSuccess(contact) {
+	    alert('Contact has been saved !');
+					  function showBottom() {
+				  window.plugins.toast.showWithOptions(
+				    {
+				      message: "hey there",
+				      duration: "short", // which is 2000 ms. "long" is 4000. Or specify the nr of ms yourself. 
+				      position: "bottom",
+				      addPixelsY: -40  // added a negative value to move it up a bit (default 0) 
+				    },
+				    onSuccess, // optional 
+				    onError    // optional 
+				  );
+				}
+	};
+
+	function onError(contactError) {
+	    alert("Error = " + contactError.code);
+	    
+	};
+		$('#btnSave0').bind( 'click', function(event, ui) {
+                                console.log(navigator.notification);
+								  	navigator.notification.confirm(
+									    'Are You Sure You Want To Add This Contact?', // message
+									     onConfirm,            // callback to invoke with index of button pressed
+									    'Add Contact',           // title
+									    ['No','Yes']     // buttonLabels
+									);  
+
+									function onConfirm(buttonIndex) {
+								    	if (buttonIndex == 2 ) {
+								    		
+								    		alert('You selected button yes ');
+								    		
+				 
+				                                // create a new contact object
+				                                var contact = navigator.contacts.create();
+				                                contact.displayName = data.govDirectoryObjects[0].contactPerson;
+				                                contact.nickname = "";            // specify both to support all devices
+				 
+				                                // populate some fields
+				                                var name = new ContactName();
+				                                name.givenName = data.govDirectoryObjects[0].contactPerson;
+				                                name.familyName = "";
+				                                contact.name = name;
+
+				 								// populate phone number feilds
+				 								var phoneNumbers = [];
+												    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[0].telephone, false);
+												    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[0].telephone, true); // preferred number
+												    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[0].telephone, false);
+												    contact.phoneNumbers = phoneNumbers;
+
+				                                // save to device
+				                                contact.save(onSuccess,onError);
+
+								    	}else{
+								    		alert('You selected no or pressed back ');
+								    		
+								    	};
+									    
+									}
+
+						                               
+                });	  
+
+
+ 				$('#btnSave1').bind( 'click', function(event, ui) {
+                                
+                             console.log(navigator.notification);
+								  	navigator.notification.confirm(
+									    'Are You Sure You Want To Add This Contact?', // message
+									     onConfirm,            // callback to invoke with index of button pressed
+									    'Add Contact',           // title
+									    ['No','Yes']     // buttonLabels
+									);  
+
+									function onConfirm(buttonIndex) {
+								    	if (buttonIndex == 2 ) {
+								    		
+								    		alert('You selected button yes ');
+								    		
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[1].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[1].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[1].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[1].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[1].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+
+						    	}else{
+						    		alert('You selected no or pressed back ');
+						    		
+								    	};
+									    
+									}
+
+						                               
+                });	  
+				$('#btnSave2').bind( 'click', function(event, ui) {
+                              console.log(navigator.notification);
+								  	navigator.notification.confirm(
+									    'Are You Sure You Want To Add This Contact?', // message
+									     onConfirm,            // callback to invoke with index of button pressed
+									    'Add Contact',           // title
+									    ['No','Yes']     // buttonLabels
+									);  
+
+									function onConfirm(buttonIndex) {
+								    	if (buttonIndex == 2 ) {
+								    		
+								    		alert('You selected button yes ');
+								    		
+ 
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[2].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[2].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[2].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[2].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[2].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+
+						    	}else{
+						    		alert('You selected no or pressed back ');
+						    		
+								    	};
+									    
+									}
+
+						                               
+                });	  
+
+				$('#btnSave3').bind( 'click', function(event, ui) {
+                             console.log(navigator.notification);
+								  	navigator.notification.confirm(
+									    'Are You Sure You Want To Add This Contact?', // message
+									     onConfirm,            // callback to invoke with index of button pressed
+									    'Add Contact',           // title
+									    ['No','Yes']     // buttonLabels
+									);  
+
+									function onConfirm(buttonIndex) {
+								    	if (buttonIndex == 2 ) {
+								    		
+								    		alert('You selected button yes ');
+								    		
+ 
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[3].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[3].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[3].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[3].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[3].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+
+						    	}else{
+						    		alert('You selected no or pressed back ');
+						    	
+								    	};
+									    
+									}
+
+						                               
+                });	  
+
+				$('#btnSave4').bind( 'click', function(event, ui) {
+                              
+ 								console.log(navigator.notification);
+								  	navigator.notification.confirm(
+									    'Are You Sure You Want To Add This Contact?', // message
+									     onConfirm,            // callback to invoke with index of button pressed
+									    'Add Contact',           // title
+									    ['No','Yes']     // buttonLabels
+									);  
+
+									function onConfirm(buttonIndex) {
+								    	if (buttonIndex == 2 ) {
+								    		
+								    		alert('You selected button yes ');
+								    		
+                                // create a new contact object
+                                var contact = navigator.contacts.create();
+                                contact.displayName = data.govDirectoryObjects[4].contactPerson;
+                                contact.nickname = "";            // specify both to support all devices
+ 
+                                // populate some fields
+                                var name = new ContactName();
+                                name.givenName = data.govDirectoryObjects[4].contactPerson;
+                                name.familyName = "";
+                                contact.name = name;
+
+ 								// populate phone number feilds
+ 								var phoneNumbers = [];
+								    phoneNumbers[0] = new ContactField('work', data.govDirectoryObjects[4].telephone, false);
+								    phoneNumbers[1] = new ContactField('mobile', data.govDirectoryObjects[4].telephone, true); // preferred number
+								    phoneNumbers[2] = new ContactField('home', data.govDirectoryObjects[4].telephone, false);
+								    contact.phoneNumbers = phoneNumbers;
+
+                                // save to device
+                                contact.save(onSuccess,onError);
+
+						    	}else{
+						    		alert('You selected no or pressed back ');
+						    		
+						    	
+								    	};
+									    
+									}
+
+						                               
+                });	  
+
 		$('.entity').append(data.govDirectoryObjects[0].entity);
+	}
 		$('#overlay').remove();
 	});
 
@@ -646,8 +771,8 @@ $(document).on("pageshow","#Departments",function(){
 	//$('.listitems').empty();
 
 	$.ajax({
-        url: "https://www.gov.kn/rest/wsc_getdepartments/?contenttype=json",
-        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
+        url: "https://www.gov.kn/rest/wsc_getdepartmentswithdirectory/?contenttype=json",
+        //https://www.gov.kn/rest/wsc_getdepartments/?contenttype=json
         //data: {q : 'Van Gogh'},
         xhrFields: {
             // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
@@ -717,8 +842,8 @@ $(document).on("pageshow","#Ministries",function(){
 	//$('.listitems').empty();
 
 	$.ajax({
-        url: "https://www.gov.kn/rest/wsc_getministries/?contenttype=json",
-        //https://www.gov.kn/rest/wsc_getevents/?contenttype=json
+        url: "https://www.gov.kn/rest/wsc_getministrieswithdirectory/?contenttype=json",
+        //https://www.gov.kn/rest/wsc_getministries/?contenttype=json
         //data: {q : 'Van Gogh'},
         xhrFields: {
             // The 'xhrFields' property sets additional fields on the XMLHttpRequest.

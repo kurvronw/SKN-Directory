@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/lib.css" />
+   
     
     <!-- Jquery Mobile -->
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
@@ -48,11 +49,24 @@
 
     .home_links_div
     {
-
         width: 95%;
-        height: 85% ;
+        color: black;
+        height: 93%;
         display: inline-block;
-        background: #2370dc;
+        background: #ffffff;
+        font-weight: normal;
+        box-shadow: 2px 6px 32px #888888;
+        border-radius: 5px;
+        padding: 8px;
+    }
+
+    .home_links_div_con{
+        width: 100%;
+       /* height: 100%;*/
+        display: inline-block;
+        margin: 0 auto;
+        text-shadow: none;
+
     }
 
     </style>
@@ -110,7 +124,7 @@
         <!--===================-->
         <!--      Search       --> 
         <!--===================-->
-        <div data-role="main" class="ui-content homemain">
+        <div data-role="main" class="ui-content homemain" style="background: white;">
             <div class="ui-field-contain homesearchfeild" style="padding: 0px;">
                <!--  <form method="get" action="searchevents.html">
                     <div class="HomeSearchInput" style="MARGIN-BOTTOM: 0PX;">
@@ -152,22 +166,29 @@
         <!--    Latest News end  -->  
         <!--===================-->
 
-        <div style="width: 95%; text-align: center; height: 200px; margin: 0 auto;">
-            <div style="float:left;width: 50%;height: 200px;display: inline-block;margin: 0 auto;text-shadow: none;">
+        <div style="width: 100%; text-align: center; height: 550px; margin: 0 auto;  background: white; background: -webkit-linear-gradient( white, #dddddd);  background: -o-linear-gradient( white, #dddddd);  background: -moz-linear-gradient( white, #dddddd); background: linear-gradient( white, #dddddd);">
+            <div class="home_links_div_con">
                 <a href="ministries.html" data-transition="flip" class="home_links" >
                     <div class="home_links_div">
-                        <IMG SRC="img/ministries.png" width="150">
-                        <p class="home_links_Lable">Ministries</p>
+                        <div>
+                            <IMG SRC="img/ministries.png" width="100%">
+                        </div>
+                        <div>
+                            <p class="home_links_Lable">Ministries</p>
+                        </div>
                     </div>
                 </a>
             </div>
-
-            <div style="float:left;width: 50%;height: 200px;display: inline-block;margin: 0 auto;text-shadow: none;">
+            <div class="Spacer_div" style="height:15px; width:100%;"> </div>
+            <div class="home_links_div_con">
                 <a href="departments.html" data-transition="flip" class="home_links">
                     <div class="home_links_div" >
-                        <IMG SRC="img/departments.png" width="150">
-                        <p class="home_links_Lable">Departments</p>
-
+                        <div>
+                            <IMG SRC="img/departments.png" width="100%" height="173">
+                        </div>
+                        <div>
+                            <p class="home_links_Lable">Departments</p>
+                        </div>
                     </div>
                 </a>
             </div>
