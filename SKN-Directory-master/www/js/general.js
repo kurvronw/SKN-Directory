@@ -790,20 +790,7 @@ $('#overlay').remove();
 			
 		}
 
-		var ActivePageN = $.mobile.activePage.attr('id');
-
-		if(ActivePageN == 'Departments'){
-			$(document).bind("scrollstop", function() {
-				if($(window).scrollTop() + $(window).height() == $(document).height()) {
-					//alert("end of page");
-
-					var Start = $( ".DepartmentListing li" ).length,
-						Start = Start + 1;
-
-					$(document).ready(Showmore(Start));
-				}
-			});
-		}
+	
     });
 });
 
@@ -864,20 +851,6 @@ $('#overlay').remove();
 			
 		}
 
-		var ActivePageN = $.mobile.activePage.attr('id');
-
-		if(ActivePageN == 'Ministries'){
-			$(document).bind("scrollstop", function() {
-				if($(window).scrollTop() + $(window).height() == $(document).height()) {
-					//alert("end of page");
-
-					var Start = $( ".MinistryListingPH li" ).length,
-						Start = Start + 1;
-
-					$(document).ready(Showmore(Start));
-				}
-			});
-		}
     });
 });
 
@@ -896,12 +869,12 @@ $(document).on("pageshow","#GroupEvents",function(){
 		var SearchParam = getQueryVariable('Min'),
 			SearchParamz = decodeURI(SearchParam),
 
-			ServiceUrl = 'https://www.gov.kn/rest/wsc_getdirectoryforministry/?contenttype=json&entity='+SearchParam+'';
+			ServiceUrl = 'https://www.gov.kn/rest/wsc_getministrieswithdirectory/?contenttype=json&entity='+SearchParam+'';
 	}
 	else if(CatType == 'Departments'){
 		var SearchParam = getQueryVariable('Dep'),
 			SearchParamz = decodeURI(SearchParam),
-			ServiceUrl = 'https://www.gov.kn/rest/wsc_getdirectoryfordepartment/?contenttype=json&entity='+SearchParam+'';
+			ServiceUrl = 'https://www.gov.kn/rest/wsc_getdepartmentswithdirectory/?contenttype=json&entity='+SearchParam+'';
 	}
 	else if(CatType == 'Categories'){
 		var SearchParam = getQueryVariable('Cats'),
