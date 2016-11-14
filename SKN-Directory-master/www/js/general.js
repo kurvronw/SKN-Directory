@@ -155,6 +155,7 @@ $(document).on("pageshow","#HomePage",function(){
 
 //////////////////////////////////////
 $(document).on("pageshow","#HomePage",function(){
+	$('#overlay').remove();
 	//alert("pageshow event fired - detailspage is now shown");
 $( "#autocompleteall" ).on( "filterablebeforefilter", function ( e, data ) {
         var $ol = $( this ),
@@ -219,6 +220,7 @@ $( "#autocompleteall2" ).on( "filterablebeforefilter", function ( e, data ) {
             origlist = $('.listitems');
         $ol.html( "" );
         if ( value && value.length > 2 ) {
+            $('#overlay').remove();
             $(document).ready(loading);
             $ol.listview( "refresh" );
             $.ajax({
@@ -263,7 +265,7 @@ $( "#autocompleteall2" ).on( "filterablebeforefilter", function ( e, data ) {
 
 //Details Page
 $(document).on("pageshow","#detailspage",function(){
-	
+	$('#overlay').remove();
 	//alert("pageshow event fired - detailspage is now shown");
 
 
@@ -653,75 +655,9 @@ $('#btnSave5').bind( 'click', function(event, ui) {
 	// }
 });
 
-////////////////////////////////////////////////////////
-
-//Cabinet page
-$(document).on("pageshow","#cabinetbrief",function(){
-	
-	//alert("pageshow event fired - detailspage is now shown");
-	$(document).ready(loading);
-
-	var NewsTitle = getQueryVariable('Title'),
-		NewsTitle = decodeURI(NewsTitle);
-
-	//alert('3');
-
-	$.ajax({
-		url: "https://www.gov.kn/rest/wsc_getskniscabinet/?contenttype=json",
-		//data: {q : EventTitle},
-		xhrFields: {
-		// The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-		// This can be used to set the 'withCredentials' property.
-		// Set the value to 'true' if you'd like to pass cookies to the server.
-		// If this is enabled, your server must respond with the header
-		// 'Access-Control-Allow-Credentials: true'.
-		withCredentials: true
-	},
-	}).then(function(data) {
-		var totalrec = data.newsObjects.length,
-			finishid = totalrec - 1,
-			PerPage = 10,
-			Pages = totalrec / PerPage;
-
-
-		for (var i = 0; i < totalrec; i++) {
-			//alert(totalrec);
-			var title = data.newsObjects[i].title;
-			
-			///////
-			
-			
-			             if (data.newsObjects[i].publishDate == null) {
-			              var datda= new Date(),
-			               DateDisplay = datda.toDateString();
-			              
-			             }
-			             else{
-			             thisdate = new Date(data.newsObjects[i].publishDate),
-			             DateDisplay= thisdate.toDateString();
-			             }
-			///////
-			
-	       
-
-			$('.cabinetlistwhole').append('<li><a id="'+i+'" href="cabinet_details.html?Title='+ title +'" data-transition="slide" class="EventListItem ui-btn ui-btn-icon-right ui-icon-carat-r"><h3>'+ title +'</h3><p>'+ DateDisplay +'</p></a></li>');
-
-			
-		};
-
-		$('#overlay').remove();
-	});
-
-	//$(document).ready(LoadContent);
-	
-});
-
-/////////////////////////////////////////////
-
-
 //All news Page
 $(document).on("pageshow","#AllEvents",function(){
-	
+	$('#overlay').remove();
 	//alert("pageshow event fired - detailspage is now shown");
 
 	$(document).ready(loading);
@@ -802,7 +738,7 @@ $(document).on("pageshow","#AllEvents",function(){
 
 //Departments Page
 $(document).on("pageshow","#Departments",function(){
-
+$('#overlay').remove();
 	$(document).ready(loading);
 	//$('.listitems').empty();
 
@@ -873,7 +809,7 @@ $(document).on("pageshow","#Departments",function(){
 
 //Ministries Page
 $(document).on("pageshow","#Ministries",function(){
-
+$('#overlay').remove();
 	$(document).ready(loading);
 	//$('.listitems').empty();
 
@@ -948,7 +884,7 @@ $(document).on("pageshow","#Ministries",function(){
 
 //Group Event Listing Page
 $(document).on("pageshow","#GroupEvents",function(){
-	
+	$('#overlay').remove();
 	//alert("pageshow event fired - detailspage is now shown");
 	
 	$(document).ready(loading);
@@ -1016,7 +952,7 @@ $(document).on("pageshow","#GroupEvents",function(){
 
 //Group Event Listing Page
 $(document).on("pageshow","#SearchEvents",function(){
-	
+	$('#overlay').remove();
 	//alert("pageshow event fired - detailspage is now shown");
 	
 	$(document).ready(loading);
